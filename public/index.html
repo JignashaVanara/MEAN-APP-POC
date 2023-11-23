@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact List App</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+</head>
+<body ng-app>
+
+    <div class="container" ng-controller="AppCtrl">
+        <h1>Contact List App</h1>
+        <hr>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>NAME</th>
+                    <th>EMAIL</th>
+                    <th>NUMBER</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text" class="form-control" ng-model="contact.name"></td>
+                    <td><input type="text" class="form-control" ng-model="contact.email"></td>
+                    <td><input type="text" class="form-control" ng-model="contact.number"></td>
+                    <td><button class="btn btn-primary" ng-click="addContacts()">Add Contact</button></td>
+                </tr>
+                <tr ng-repeat='contact in contactlist'>
+                    <td><span ng-hide="editMode">{{contact.name}}</span>
+                        <input type="text" ng-show="editMode" class="form-control" ng-model="contact1.name"/>
+                    </td>
+                    <td><span ng-hide="editMode">{{contact.email}}</span>
+                        <input type="text" ng-show="editMode" class="form-control" ng-model="contact1.email"/>
+                    </td>
+                    <td><span ng-hide="editMode">{{contact.number}}</span>
+                        <input type="text" ng-show="editMode" class="form-control" ng-model="contact1.number"/>
+                    </td>
+                    <td>
+                        <i ng-hide="editMode" ng-click="editMode =true; getItembyID(contact._id)" class="glyphicon glyphicon-edit"></i>
+                        <i class="glyphicon glyphicon-saved" ng-show="editMode" ng-click="editMode =false; editItem(contact._id)"></i>
+                    </td>
+                    <td>
+                        <i ng-click="removeItem(contact._id)" class="glyphicon glyphicon-trash"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.min.js"></script>
+    <script src="controllers/controller.js"></script>
+</body>
+</html>
